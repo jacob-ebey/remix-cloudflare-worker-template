@@ -1,0 +1,20 @@
+name = "remix-cloudflare-worker-template"
+compatibility_date = "2022-05-14"
+account_id = "574fdb1eae7e80782a805c4b92f6b626"
+
+main = "entry.worker.ts"
+
+workers_dev = true
+
+[build]
+command = "npm run build"
+
+[site]
+bucket = "public"
+
+[durable_objects]
+bindings = [{name = "COUNTER", class_name = "CounterDurableObject"}]
+
+[[migrations]]
+tag = "v1"
+new_classes = ["CounterDurableObject"]
