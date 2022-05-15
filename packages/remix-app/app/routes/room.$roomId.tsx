@@ -1,17 +1,34 @@
 import type { KeyboardEventHandler } from "react";
 import { useEffect, useState } from "react";
-import type { LoaderFunction } from "@remix-run/cloudflare";
+import type { ActionFunction, LoaderFunction } from "@remix-run/cloudflare";
 import { json, redirect } from "@remix-run/cloudflare";
 import { Form, useLoaderData, useLocation } from "@remix-run/react";
 import type { Message } from "chat-room-do";
 
-import { getSession } from "~/session.server";
+import { commitSession, getSession } from "~/session.server";
 
 type LoaderData = {
   loaderCalls: number;
   latestMessages: Message[];
   roomId: string;
   username: string;
+};
+
+export let action: ActionFunction = async ({ context: { env }, request }) => {
+  let formData = await request.formData();
+  let username = formData.get("username") || "";
+
+  if (!username) {
+    throw json(null, { status: 401 });
+  }
+
+  let session = await getSession(request, env);
+  session.set("username", username);
+
+  let url = new URL(request.url);
+  return redirect(url.pathname, {
+    headers: { "Set-Cookie": await commitSession(session, env) },
+  });
 };
 
 export let loader: LoaderFunction = async ({
@@ -151,7 +168,7 @@ export default function Room() {
 export function CatchBoundary() {
   return (
     <main>
-      <Form action="/join" method="post">
+      <Form method="post">
         <input type="text" name="username" placeholder="username" />
         <button>Go!</button>
       </Form>
