@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@cloudflare/kv-asset-handler": "^0.2.0",
+    "@remix-run/cloudflare": "^1.4.3",
     "chat-room-do": "*",
     "counter-do": "*",
     "rate-limiter-do": "*",
