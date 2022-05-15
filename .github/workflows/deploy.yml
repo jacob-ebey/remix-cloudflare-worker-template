@@ -14,6 +14,8 @@ jobs:
 
       - name: 📥 Install deps
         uses: bahmutov/npm-install@v1
+        with:
+          install-command: npm i
 
       - name: 📦 Build
         run: npm run build
