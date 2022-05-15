@@ -1,8 +1,4 @@
-import {
-  getAssetFromKV,
-  NotFoundError,
-  MethodNotAllowedError,
-} from "@cloudflare/kv-asset-handler";
+import { getAssetFromKV } from "@cloudflare/kv-asset-handler";
 import { createRequestHandler } from "@remix-run/cloudflare";
 import manifestJSON from "__STATIC_CONTENT_MANIFEST";
 
