@@ -6,7 +6,7 @@
     "*.jsx": "${capture}.js",
     "*.tsx": "${capture}.ts",
     "tsconfig.json": "tsconfig.*.json",
-    "package.json": "package-lock.json, remix.config.js, tsconfig.json, .eslintrc.js, .gitignore, turbo.json, wrangler.toml, build.d.ts, tsconfig.tsbuildinfo"
+    "package.json": "package-lock.json, remix.config.js, tsconfig.json, .eslintrc.js, .gitignore, .prettierignore, turbo.json, tsconfig.tsbuildinfo"
   },
   "search.useGlobalIgnoreFiles": true,
   "files.exclude": {

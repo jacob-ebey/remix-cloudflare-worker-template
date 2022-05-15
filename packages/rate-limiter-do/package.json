@@ -1,5 +1,5 @@
 {
-  "name": "counter-do",
+  "name": "rate-limiter-do",
   "version": "0.0.0",
   "license": "MIT",
   "main": "index.ts",
@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^3.10.0",
+    "cloudflare-env": "*",
     "eslint": "^8.15.0",
     "eslint-config-custom": "*",
     "tsconfig": "*",

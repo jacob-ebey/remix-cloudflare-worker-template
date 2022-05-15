@@ -8,7 +8,9 @@ import manifestJSON from "__STATIC_CONTENT_MANIFEST";
 
 import * as build from "./build";
 
+export { default as ChatRoomDurableObject } from "chat-room-do";
 export { default as CounterDurableObject } from "counter-do";
+export { default as RateLimiterDurableObject } from "rate-limiter-do";
 
 let assetManifest = JSON.parse(manifestJSON);
 let handleRemixRequest = createRequestHandler(build, process.env.NODE_ENV);

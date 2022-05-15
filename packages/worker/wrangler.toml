@@ -1,0 +1,35 @@
+account_id = "574fdb1eae7e80782a805c4b92f6b626"
+compatibility_date = "2022-05-14"
+name = "remix-cloudflare-worker-template"
+
+main = "entry.worker.ts"
+
+workers_dev = true
+
+[site]
+bucket = "../remix-app/public"
+
+[env.dev]
+vars = {SESSION_SECRET = "should-be-secure-in-prod"}
+
+[env.dev.durable_objects]
+bindings = [
+  {name = "CHAT_ROOM", class_name = "ChatRoomDurableObject"},
+  {name = "COUNTER", class_name = "CounterDurableObject"},
+  {name = "RATE_LIMITER", class_name = "RateLimiterDurableObject"},
+]
+
+[durable_objects]
+bindings = [
+  {name = "CHAT_ROOM", class_name = "ChatRoomDurableObject"},
+  {name = "COUNTER", class_name = "CounterDurableObject"},
+  {name = "RATE_LIMITER", class_name = "RateLimiterDurableObject"},
+]
+
+[[migrations]]
+new_classes = ["CounterDurableObject"]
+tag = "v1"
+
+[[migrations]]
+new_classes = ["ChatRoomDurableObject", "RateLimiterDurableObject"]
+tag = "v2"

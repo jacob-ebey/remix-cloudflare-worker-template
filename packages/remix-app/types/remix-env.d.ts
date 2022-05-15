@@ -1,15 +1,13 @@
 /// <reference types="@remix-run/dev" />
 /// <reference types="@remix-run/cloudflare/globals" />
 
-interface Env {
-  __STATIC_CONTENT: KVNamespace;
-
-  COUNTER: DurableObjectNamespace;
-}
-
 interface LoadContext {
   env: Env;
 }
+
+declare var process: {
+  env: { NODE_ENV: "development" | "production" };
+};
 
 declare module "@remix-run/cloudflare" {
   import type { DataFunctionArgs as RemixDataFunctionArgs } from "@remix-run/cloudflare";

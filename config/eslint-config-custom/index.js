@@ -4,7 +4,7 @@ let config = {
   ignorePatterns: ["node_modules", "build"],
   settings: {
     files: ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
-  }
+  },
 };
 
 module.exports = config;

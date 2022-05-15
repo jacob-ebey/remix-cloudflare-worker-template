@@ -1,8 +1,7 @@
 {
-  "name": "counter-do",
+  "name": "cloudflare-env",
   "version": "0.0.0",
   "license": "MIT",
-  "main": "index.ts",
   "types": "index.ts",
   "scripts": {
     "lint": "eslint .",

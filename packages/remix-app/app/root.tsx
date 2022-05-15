@@ -47,7 +47,12 @@ function Document({ children }: PropsWithChildren<{}>) {
       </head>
       <body>
         {children}
-        {data && <footer>root loader invocations: {data.loaderCalls}</footer>}
+        {data && (
+          <>
+            <hr />
+            <footer>root loader invocations: {data.loaderCalls}</footer>
+          </>
+        )}
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

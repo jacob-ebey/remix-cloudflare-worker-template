@@ -1,10 +1,17 @@
 export default class CounterDurableObject {
-  constructor(private state: DurableObjectState) {}
+  private value: number = 0;
+
+  constructor(private state: DurableObjectState) {
+    this.state.blockConcurrencyWhile(async () => {
+      let storedValue = await this.state.storage.get<number>("value");
+      this.value = storedValue || 0;
+    });
+  }
 
   async fetch(request: Request) {
     let url = new URL(request.url);
 
-    let value = (await this.state.storage.get<number>("value")) || 0;
+    let value = this.value;
     switch (url.pathname) {
       case "/increment":
         ++value;
@@ -19,7 +26,8 @@ export default class CounterDurableObject {
         return new Response("Not found", { status: 404 });
     }
 
-    await this.state.storage?.put("value", value);
+    this.value = value;
+    this.state.storage.put("value", value);
 
     return new Response(value.toString());
   }
