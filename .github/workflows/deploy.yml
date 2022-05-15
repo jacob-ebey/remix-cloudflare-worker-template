@@ -15,9 +15,12 @@ jobs:
       - name: 📥 Install deps
         uses: bahmutov/npm-install@v1
 
+      - name: 📦 Build
+        run: npm run build
+
       - name: 🚀 Publish
         uses: cloudflare/wrangler-action@2.0.0
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
-          workingDirectory: "packages/web"
+          workingDirectory: "packages/worker"
           command: publish
