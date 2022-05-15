@@ -2,6 +2,7 @@ import type { PropsWithChildren } from "react";
 import type { LoaderFunction, MetaFunction } from "@remix-run/cloudflare";
 import { json } from "@remix-run/cloudflare";
 import {
+  Link,
   Links,
   LiveReload,
   Meta,
@@ -46,6 +47,15 @@ function Document({ children }: PropsWithChildren<{}>) {
         />
       </head>
       <body>
+        <header>
+          <h1>
+            <Link to="/">Remix Chat</Link>
+          </h1>
+          <p>
+            This chat runs entirely on the edge, powered by Cloudflare Workers
+            Durable Objects
+          </p>
+        </header>
         {children}
         {data && (
           <>

@@ -21,21 +21,22 @@ export default function Index() {
 
   return (
     <main>
-      <h1>Remix Chat</h1>
-      <p>
-        This chat runs entirely on the edge, powered by Cloudflare Workers
-        Durable Objects
-      </p>
-
-      <Form method="post">
+      <Form method="post" id="username-form">
         <label>
           Choose a username:
           <br />
-          <input name="username" placeholder="username" maxLength={32} />
+          <input
+            name="username"
+            placeholder="username"
+            maxLength={32}
+            required
+          />
         </label>
         <p>then</p>
         <p>
-          <button formAction="/new">Create a Private Room</button>
+          <button type="submit" formAction="/new">
+            Create a Private Room
+          </button>
         </p>
         <p>or</p>
         <label>
@@ -48,7 +49,9 @@ export default function Index() {
             placeholder="room-name"
           />
         </label>
-        <button formAction="/join">GO!</button>
+        <button type="submit" formAction="/join">
+          GO!
+        </button>
       </Form>
 
       <hr />
