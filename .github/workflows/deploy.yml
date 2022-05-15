@@ -12,11 +12,11 @@ jobs:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v3
 
-      - name: 📥 Install deps
-        uses: bahmutov/npm-install@v1
-
       - name: 📥 Install turbo
         run: npm install -g turbo
+
+      - name: 📥 Install deps
+        uses: bahmutov/npm-install@v1
 
       - name: 📦 Build
         run: npm run build
