@@ -1,3 +1,4 @@
+import Filter from "bad-words";
 import { RateLimiterClient } from "rate-limiter-do";
 
 import { handleErrors } from "./utils";
@@ -18,8 +19,11 @@ type Session = {
 export default class ChatRoomDurableObject {
   private sessions: Session[] = [];
   private lastTimestamp: number = 0;
+  private filter: Filter;
 
-  constructor(private state: DurableObjectState, private env: Env) {}
+  constructor(private state: DurableObjectState, private env: Env) {
+    this.filter = new Filter();
+  }
 
   async fetch(request: Request) {
     return handleErrors(request, async () => {
@@ -158,6 +162,9 @@ export default class ChatRoomDurableObject {
           webSocket.send(JSON.stringify({ error: "Message too long." }));
           return;
         }
+
+        // Filter out profanity as any public demo will bring degenerates.
+        data.message = this.filter.clean(data.message);
 
         // Add timestamp. Here's where this.lastTimestamp comes in -- if we receive a bunch of
         // messages at the same time (or if the clock somehow goes backwards????), we'll assign

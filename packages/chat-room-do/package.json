@@ -8,8 +8,12 @@
     "lint": "eslint .",
     "typecheck": "tsc -b"
   },
+  "dependencies": {
+    "bad-words": "^3.0.4"
+  },
   "devDependencies": {
     "@cloudflare/workers-types": "^3.10.0",
+    "@types/bad-words": "^3.0.1",
     "cloudflare-env": "*",
     "eslint": "^8.15.0",
     "eslint-config-custom": "*",
